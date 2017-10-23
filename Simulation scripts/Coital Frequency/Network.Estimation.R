@@ -33,6 +33,7 @@ target_stats_vec <- c(0,250,500,750,1000)
 coital_freq_vec  <- c(0.1,0.15,0.2,0.25)
 
 modname_vec=c("conc0","conc5","conc10","conc15","conc20")
+modname_vec2=c("msa0.1","msa0.15","msa0.2","msa0.25")
 
 for(ii in 1:length(target_stats_vec)){
   for(jj in 1:length(coital_freq_vec)){
@@ -52,6 +53,7 @@ evoparams$target_stats   <- c(1750, target_stats_vec[ii])
 evoparams$mean_sex_acts_day <- coital_freq_vec[jj]
 
 modname=modname_vec[ii]
+modname2=modname_vec2[jj]
 #add parameters that are functions of other input parameters
 evoparams  <- input_parameters_derived(evoparams)
 
@@ -88,7 +90,7 @@ estimated_nw <- do.call(EpiModel::netest, netest_arg_list)
 #--------------------------------------------------------------
 
 save(estimated_nw,
-     file = paste("evo_nw_",modname,".RDATA",sep=""))
+     file = paste("evo_nw_",modname,modname2,".RDATA",sep=""))
 remove(estimated_nw)
   }
 }
