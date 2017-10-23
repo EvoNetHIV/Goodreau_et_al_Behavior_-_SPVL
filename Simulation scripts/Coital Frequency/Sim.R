@@ -1,6 +1,6 @@
 
-hyak=T
-hyak_par=T
+hyak=F
+hyak_par=F
 
 #hyak=T, hyak_par=F => Hyak interactive
 #hyak=T, hyak_par=T => Hyak parallel PBS 
@@ -9,7 +9,8 @@ hyak_par=T
 if(!isTRUE(hyak) & isTRUE(hyak_par)){stop("hyak flags incorrect")}
 
 hyak_path= '/gscratch/conc'
-local_path="~/Hyak/Concurrency_Runs/Run"
+#local_path="~/Hyak/Concurrency_Runs/Run"
+local_path="/Users/sarahstansfield/Downloads/Goodreau_et_al_Behavior_-_SPVL-master/Simulation scripts/Coital Frequency"
 
 if(hyak)outpath=hyak_path else 
   outpath=local_path
@@ -60,8 +61,10 @@ target_stats_vec <- c(0,250,500,750,1000)
 coital_freq_vec  <- c(0.1,0.15,0.2,0.25)
 
 #output name
-suffix=(rep("",5))
-model_names=paste("run48_concurrency_level_",target_stats_vec,suffix,sep="")
+#suffix=(rep("",5))
+#model_names=paste("run_concurrency_level_",target_stats_vec,"_msa_",coital_freq_vec,suffix,sep="")
+modname_vec=c("conc0","conc5","conc10","conc15","conc20")
+modname_vec2=c("msa0.1","msa0.15","msa0.2","msa0.25")
 
 #estiamted_nw object names
 nw_names=c("evo_nw_conc0.RDATA","evo_nw_conc5.RDATA","evo_nw_conc10.RDATA","evo_nw_conc15.RDATA",
@@ -74,10 +77,13 @@ for(ii in 1:length(target_stats_vec))
 {  
   for(jj in 1:length(coital_freq_vec))
   {
+  modname=modname_vec[ii]
+  modname2=modname_vec2[jj]
+    
+  load(file.path(outpath,paste("evo_nw_",modname,modname2,".RDATA",sep="")))
   
-  load(file.path(outpath,nw_names[ii]))
+  model_name = paste(modname,"_",modname2,sep="")
   
-  model_name = model_names[ii]
   evoparams$target_stats   <- c(1750, target_stats_vec[ii])
   evoparams$mean_sex_acts_day <- coital_freq_vec[jj]
   #--------------------------------------------------------------
