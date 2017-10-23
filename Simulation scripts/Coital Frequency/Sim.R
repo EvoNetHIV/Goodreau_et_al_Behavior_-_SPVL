@@ -1,6 +1,6 @@
 
-hyak=F
-hyak_par=F
+hyak=T
+hyak_par=T
 
 #hyak=T, hyak_par=F => Hyak interactive
 #hyak=T, hyak_par=T => Hyak parallel PBS 
@@ -9,8 +9,7 @@ hyak_par=F
 if(!isTRUE(hyak) & isTRUE(hyak_par)){stop("hyak flags incorrect")}
 
 hyak_path= '/gscratch/conc'
-#local_path="~/Hyak/Concurrency_Runs/Run"
-local_path="/Users/sarahstansfield/Downloads/Goodreau_et_al_Behavior_-_SPVL-master/Simulation scripts/Coital Frequency"
+local_path="~/Hyak/Concurrency_Runs/Run"
 
 if(hyak)outpath=hyak_path else 
   outpath=local_path
