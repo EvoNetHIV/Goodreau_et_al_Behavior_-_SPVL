@@ -9,7 +9,7 @@ hyak_par=T
 if(!isTRUE(hyak) & isTRUE(hyak_par)){stop("hyak flags incorrect")}
 
 hyak_path= '/gscratch/conc'
-local_path="~/Hyak/Concurrency_Runs/Run"
+local_path=getwd()
 
 if(hyak)outpath=hyak_path else 
   outpath=local_path
