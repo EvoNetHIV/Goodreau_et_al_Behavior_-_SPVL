@@ -1,6 +1,8 @@
 
-hyak=T
-hyak_par=T
+hyak=F
+hyak_par=F
+# Hyak refers to the University of Washington supercomputer, where these simulations were run. 
+# Users at UW with access to Hyak may wish to change these parameters to "true."
 
 #hyak=T, hyak_par=F => Hyak interactive
 #hyak=T, hyak_par=T => Hyak parallel PBS 
